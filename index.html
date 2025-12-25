@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa de Navidad</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="entry-screen">
+        <div class="entry-content">
+            <h1>Sorpresa Navideña</h1>
+            <p>Ponte audífonos para una mejor experiencia wajajajajaja</p>
+            <button onclick="startChristmas()">Entra enanita ñejejeje</button>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <section id="countdown-section" class="active">
+            <h1>Faltan para Navidad:</h1>
+            <div id="timer">
+                <div><span id="days">00</span> Días</div>
+                <div><span id="hours">00</span> Horas</div>
+                <div><span id="minutes">00</span> Min</div>
+                <div><span id="seconds">00</span> Seg</div>
+            </div>
+            <p id="wait-message">¡Se Paciencia Enanita! La magia llega a las 12:00.</p>
+        </section>
+
+        <section id="video-section" class="hidden">
+    <h2>Mi Musa eres tu mi valiente caballero</h2>
+    <p>Haz clic en cada foto para verla en tamaño completo y desbloquear el siguiente paso.</p>
+    <p>Progreso: <span id="videos-watched">0</span>/6</p>
+    
+    <div class="video-grid">
+        <div class="video-card photo-card" onclick="openImage(this)">
+            <div class="video-overlay">Se lo muhco que gustan las rosas e hice esta para ti</div>
+            <img src="ROSA.png" alt="Rosa">
+        </div>
+        <div class="video-card photo-card" onclick="openImage(this)">
+            <div class="video-overlay">Waos que loco tu y yo :D</div>
+            <img src="TU Y YO.png" alt="Somos tu y yo">
+        </div>
+        <div class="video-card photo-card" onclick="openImage(this)">
+            <div class="video-overlay">Wajajaja un conejo mensajero muak muak</div>
+            <img src="CARTA DE AMOR.png" alt="Que lindo conejito">
+        </div>
+        <div class="video-card photo-card" onclick="openImage(this)">
+            <div class="video-overlay">Cual cauk cauk jsjsj digo muak muak muak</div>
+            <img src="Patodalavida.png" alt="Patito lindo">
+        </div>
+        <div class="video-card photo-card" onclick="openImage(this)">
+            <div class="video-overlay">Aun te acuerdas nuestro primer beso?
+            </div>
+            <img src="Besitos.png" alt="Muak muak">
+        </div>
+        <div class="video-card photo-card" onclick="openImage(this)">
+            <div class="video-overlay">Gracias por salvarme</div>
+            <img src="caos.png" alt="Oñoo">
+        </div>
+    </div>
+</section>
+
+<div id="fullscreen-modal" class="hidden" onclick="closeImage()">
+    <span class="close-btn">&times;</span>
+    <img id="modal-img" src="" alt="Pantalla Completa">
+</div>
+
+        <section id="phrases-section" class="hidden">
+            <h2>Unas palabras para ti...</h2>
+            <p>Lee cada mensaje para revelar el final.</p>
+            
+            <div class="phrases-grid">
+                <div class="phrase-card" onclick="revealPhrase(this)">
+                    <div class="phrase-cover">Sobre número 1</div>
+                    <div class="phrase-content">"Eres la persona que ilumina mis días más oscuros."</div>
+                </div>
+                <div class="phrase-card" onclick="revealPhrase(this)">
+                    <div class="phrase-cover">Sobre número 2</div>
+                    <div class="phrase-content">"Gracias por estar conmigo en este año tan loco para ambos."</div>
+                </div>
+                <div class="phrase-card" onclick="revealPhrase(this)">
+                    <div class="phrase-cover">Sobre número 3</div>
+                    <div class="phrase-content">"Siempre estare contigo y te apoyare en tus mestas."</div>
+                </div>
+                <div class="phrase-card" onclick="revealPhrase(this)">
+                    <div class="phrase-cover">Sobre número 4</div>
+                    <div class="phrase-content">"Te amo muchísimo. ¡Feliz Navidad mi enanita!"</div>
+                </div>
+            </div>
+            
+            <button id="final-btn" class="hidden" onclick="showGifts()">¡Quieres ver tu Regalo!¡Grrrrrr!</button>
+        </section>
+
+        <section id="gift-section" class="hidden">
+    <h1>¡FELIZ NAVIDAD!</h1>
+    <p class="instruction-text">Toca la caja enanita, para abrir tu regalo</p>
+    
+    <div class="gift-container" onclick="openGift()">
+        <div class="box">
+            <div class="box-body"></div>
+            <div class="box-lid">
+                <div class="box-bow"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gift-content" class="hidden">
+        <div class="golden-ticket">
+            <div class="ticket-visual">🎁</div>
+            <h2>Vale por:</h2>
+            <p class="ticket-text">Un beso y un chocolate</p>
+            <p class="ticket-subtext">(Válido todo el año)</p>
+            <div class="ticket-shine"></div>
+        </div>
+        <p class="final-love">Con mucho amor, para ti mi niña, <br>¡Te amo mucho!</p>
+    </div>
+</section>
+
+    </div>
+    <audio id="bg-music" loop>
+        <source src="/Enrique_Iglesias_Cuando_Me_Enamoro_Letra_256KBPS.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <button id="music-toggle" class="music-btn" onclick="toggleMusic()">
+        🎵
+    </button>
+    <script src="script.js"></script>
+</body>
+</html>

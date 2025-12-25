@@ -1,0 +1,711 @@
+/* =========================================
+   1. CONFIGURACIÓN GENERAL Y FONDO MÁGICO
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    /* Fondo degradado profundo */
+    background: radial-gradient(circle at center, #1a2a6c, #b21f1f, #fdbb2d);
+    background: linear-gradient(135deg, #8E0E00, #1F1C18); /* Rojo oscuro elegante */
+    color: #333;
+}
+
+/* EFECTO NIEVE (CSS Puro) */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(4px 4px at 100px 50px, #fff , transparent), 
+        radial-gradient(6px 6px at 200px 150px, #fff, transparent), 
+        radial-gradient(3px 3px at 300px 250px, #fff, transparent), 
+        radial-gradient(4px 4px at 400px 350px, #fff, transparent);
+    background-size: 650px 650px;
+    animation: snow 10s linear infinite;
+    opacity: 0.6;
+}
+body::after {
+    background-size: 450px 450px;
+    animation: snow 6s linear infinite reverse; /* Segunda capa más rápida */
+    opacity: 0.4;
+}
+
+@keyframes snow {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 650px; }
+}
+
+h1, h2 {
+    font-family: 'Mountains of Christmas', cursive;
+    color: #d42426;
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.4);
+    margin-bottom: 1rem;
+}
+
+/* =========================================
+   2. CONTENEDOR (EFECTO CRISTAL)
+   ========================================= */
+.container {
+    background: rgba(255, 255, 255, 0.85); /* Blanco semitransparente */
+    backdrop-filter: blur(12px); /* Efecto borroso detrás */
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.5),
+        inset 0 0 0 2px rgba(255,255,255,0.5); /* Borde interno brillante */
+    width: 90%;
+    max-width: 850px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    border: 1px solid rgba(255,255,255,0.6);
+}
+
+.hidden { display: none !important; }
+
+/* =========================================
+   3. CONTADOR (ESTILO ADORNOS)
+   ========================================= */
+#timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+#timer div {
+    background: linear-gradient(145deg, #165b33, #0f4024);
+    color: #fff;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%; /* Círculos como esferas */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 
+        0 5px 15px rgba(0,0,0,0.3),
+        inset 0 5px 5px rgba(255,255,255,0.2); /* Brillo superior */
+    border: 2px solid #d4af37; /* Borde dorado */
+    position: relative;
+}
+
+/* El "hilo" de la esfera */
+#timer div::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 4px;
+    height: 10px;
+    background: #d4af37;
+}
+
+#timer span {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1;
+}
+
+/* =========================================
+   4. GALERÍA DE FOTOS (ESTILO POLAROID PREMIUM)
+   ========================================= */
+
+/* Importamos una fuente manuscrita para darle toque personal */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px; /* Más espacio para que puedan rotar sin chocar */
+    margin-top: 40px;
+    padding: 20px;
+}
+
+/* La tarjeta Polaroid */
+.video-card {
+    background-color: #fff;
+    /* El padding-bottom grande crea el espacio blanco típico de la polaroid */
+    padding: 12px 12px 50px 12px; 
+    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    transform-origin: center;
+}
+
+/* Rotaciones aleatorias para que parezcan tiradas en una mesa */
+.video-card:nth-child(odd) { transform: rotate(-3deg); }
+.video-card:nth-child(even) { transform: rotate(2deg); }
+.video-card:nth-child(3n) { transform: rotate(-1.5deg); }
+
+/* Efecto al pasar el mouse (HOVER) */
+.video-card:hover {
+    transform: scale(1.1) rotate(0deg) translateY(-10px); /* Se endereza, crece y sube */
+    z-index: 20; /* Se pone encima de las demás */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4); /* Sombra más profunda */
+}
+
+/* Simulación de cinta adhesiva ("Scotch tape") arriba de la foto */
+.video-card::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%) rotate(-2deg);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.video-card img {
+    width: 100%;
+    height: 220px; /* Altura fija para uniformidad */
+    object-fit: cover;
+    border: 1px solid #eee;
+    filter: sepia(20%) contrast(1.1); /* Filtro sutil vintage */
+    transition: filter 0.3s;
+}
+
+.video-card:hover img {
+    filter: sepia(0%) contrast(1.2); /* Vuelve al color original al tocar */
+}
+
+/* Texto de la Polaroid (Overlay) */
+.video-overlay {
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    width: 100%;
+    height: 50px; /* Solo ocupa la parte blanca de abajo */
+    top: auto; /* Anulamos el top del CSS anterior */
+    background: transparent; /* Transparente para ver el papel blanco */
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Indie Flower', cursive; /* Fuente manuscrita */
+    font-weight: bold;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+/* Cuando ya fue vista (Marco dorado) */
+.video-card.watched {
+    border: 2px solid #d4af37;
+    background: #fffdf0; /* Papel un poco envejecido */
+}
+
+.video-card.watched::after {
+    content: '❤️';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+}
+
+/* =========================================
+   5. VISOR DE PANTALLA COMPLETA (MODAL)
+   ========================================= */
+#fullscreen-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Fondo oscuro pero borroso (Glassmorphism oscuro) */
+    background-color: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+/* Clase para mostrar el modal suavemente */
+#fullscreen-modal:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+#modal-img {
+    max-width: 85%;
+    max-height: 85vh;
+    border: 15px solid #fff; /* Marco blanco grueso estilo cuadro */
+    border-bottom: 50px solid #fff; /* Espacio para "título" mental */
+    border-radius: 4px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.6);
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#fullscreen-modal:not(.hidden) #modal-img {
+    transform: scale(1); /* Efecto pop al abrir */
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 3rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    background: rgba(0,0,0,0.5);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    transform: rotate(90deg);
+    background: #d4af37;
+    color: #000;
+}
+
+/* AJUSTE PARA MÓVILES */
+@media (max-width: 600px) {
+    .video-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Más pequeñas en móvil */
+        gap: 20px;
+    }
+    .video-card img { height: 160px; }
+    #modal-img {
+        border: 8px solid #fff;
+        border-bottom: 25px solid #fff;
+        max-width: 95%;
+    }
+}
+
+/* =========================================
+   5. FRASES (ESTILO SOBRES REALISTAS)
+   ========================================= */
+.phrases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.phrase-card {
+    height: 140px;
+    position: relative;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+/* La tapa roja (Sobre cerrado) */
+.phrase-cover {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 1.4rem;
+    z-index: 2;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top; /* Se abre hacia arriba */
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 2px solid #a62626;
+}
+
+/* Simulación de sello dorado en el sobre */
+.phrase-cover::after {
+    content: "★";
+    position: absolute;
+    bottom: 20px;
+    font-size: 2rem;
+    color: #d4af37;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* El contenido (Papel interior) */
+.phrase-content {
+    position: absolute;
+    top: 5px; left: 5px; width: calc(100% - 10px); height: calc(100% - 10px);
+    background: #fff;
+    color: #333;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.95rem;
+    font-family: 'Indie Flower', cursive; /* Estilo manuscrito si estuviera disponible, sino default */
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+.phrase-card.open .phrase-cover {
+    transform: rotateX(180deg);
+    opacity: 0; /* Opcional: hacerlo desaparecer o dejarlo "abierto" arriba */
+}
+
+/* =========================================
+   6. BOTÓN FINAL Y REGALO
+   ========================================= */
+#final-btn {
+    background: linear-gradient(45deg, #165b33, #2e8b57);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0 10px 20px rgba(22, 91, 51, 0.4);
+    transition: transform 0.3s;
+    font-family: 'Mountains of Christmas', cursive;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#final-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #1e7e46, #3cb371);
+}
+
+.gift-box {
+    width: 120px;
+    height: 120px;
+    background: #d32f2f;
+    margin: 20px auto;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+
+/* Cinta dorada vertical */
+.gift-box::before {
+    content: '';
+    position: absolute;
+    width: 25px; height: 100%;
+    background: #ffd700;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+/* Cinta dorada horizontal */
+.gift-box::after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 25px;
+    background: #ffd700;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+}
+
+.gift-reveal {
+    margin-top: 20px;
+    animation: fadeIn 1s ease;
+}
+
+.gift-reveal img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 5px solid white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+    .container {
+        padding: 1.5rem;
+        width: 95%;
+    }
+    h1 { font-size: 1.8rem; }
+    #timer div {
+        width: 70px; height: 70px;
+    }
+    #timer span { font-size: 1.4rem; }
+}
+/* --- ESTILO DE LA CAJA DE REGALO MEJORADA --- */
+.instruction-text {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    animation: bounceText 2s infinite;
+}
+
+@keyframes bounceText {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.gift-container {
+    perspective: 1000px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+/* Animación de vibración antes de abrir */
+.gift-container:hover .box {
+    animation: shakeBox 0.5s infinite;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.box-body {
+    width: 150px;
+    height: 120px;
+    background: #b71c1c;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Cinta vertical del cuerpo */
+.box-body::after {
+    content: '';
+    position: absolute;
+    width: 30px; height: 100%;
+    background: #d4af37;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.box-lid {
+    width: 160px;
+    height: 40px;
+    background: #d32f2f;
+    position: absolute;
+    top: 20px; /* Ajuste visual */
+    left: -5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transform-origin: top center;
+    transition: transform 1s ease-in-out, opacity 0.5s 0.5s;
+    z-index: 2;
+}
+
+/* Cinta de la tapa */
+.box-lid::after {
+    content: '';
+    position: absolute;
+    width: 30px; height: 100%;
+    background: #d4af37;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* El lazo de arriba */
+.box-bow {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 30px;
+    border: 5px solid #d4af37;
+    border-radius: 50%;
+    border-bottom: none;
+}
+.box-bow::before { /* Lazo cruzado */
+    content: '';
+    position: absolute;
+    top: 5px; left: 15px;
+    width: 20px; height: 100%;
+    background: #d4af37;
+}
+
+/* --- CLASE PARA ABRIR LA CAJA --- */
+.box.opened .box-lid {
+    transform: rotateX(-120deg) translateY(-100px);
+    opacity: 0;
+}
+.box.opened .box-body {
+    transform: translateY(100px) scale(0.8);
+    opacity: 0;
+    transition: all 1s;
+}
+
+/* --- TICKET DORADO --- */
+#gift-content {
+    margin-top: -100px; /* Para que aparezca donde estaba la caja */
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 5;
+}
+
+#gift-content.visible {
+    opacity: 1;
+    transform: scale(1);
+    margin-top: 20px;
+}
+
+.golden-ticket {
+    background: linear-gradient(135deg, #d4af37, #f9e589, #d4af37);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px dashed #8a6e2f;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+    color: #5d4037;
+    position: relative;
+    overflow: hidden;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.ticket-visual { font-size: 3rem; margin-bottom: 10px; }
+.ticket-text { font-size: 1.5rem; font-weight: bold; margin: 10px 0; line-height: 1.2; }
+.ticket-subtext { font-size: 0.8rem; font-style: italic; }
+
+/* Brillo pasando por el ticket */
+.ticket-shine {
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
+    transform: skewX(-20deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+/* --- CONFETI --- */
+.confetti {
+    position: fixed;
+    width: 10px; height: 10px;
+    background-color: #f00;
+    animation: fall linear forwards;
+    z-index: 100;
+}
+
+@keyframes fall {
+    to { transform: translateY(100vh) rotate(720deg); }
+}
+
+/* --- BOTÓN DE MÚSICA --- */
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #b71c1c;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000; /* Siempre encima de todo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.music-btn:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+/* --- PANTALLA DE BIENVENIDA --- */
+#entry-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+    z-index: 9999; /* Por encima de TODO */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-out;
+}
+
+.entry-content {
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid #d4af37;
+    backdrop-filter: blur(5px);
+}
+
+.entry-content h1 {
+    color: #fff;
+    text-shadow: 0 0 10px #ff0000;
+    font-size: 3rem;
+}
+
+.entry-content button {
+    background: #165b33;
+    color: white;
+    border: 2px solid #d4af37;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50px;
+    font-family: 'Mountains of Christmas', cursive;
+    transition: transform 0.2s;
+    margin-top: 20px;
+}
+
+.entry-content button:hover {
+    transform: scale(1.1);
+    background: #1e7e46;
+}
+
+/* Clase para ocultar la pantalla suavemente */
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
