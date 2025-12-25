@@ -3,7 +3,7 @@
 // Formato: "Month Day, Year Hour:Minute:Second"
 // Para Navidad sería: "Dec 25, 2024 00:00:00"
 // TRUCO: Si quieres probar si funciona AHORA, pon una fecha pasada.
-const targetDate = new Date("Dec 25, 2023 00:00:00").getTime();
+const targetDate = new Date("Dec 25, 2025 00:00:00").getTime();
 
 
 // --- VARIABLES DE ESTADO ---
@@ -218,4 +218,5 @@ function startChristmas() {
     setTimeout(() => {
         entryScreen.style.display = 'none';
     }, 800);
+
 }
